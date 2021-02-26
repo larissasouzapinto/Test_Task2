@@ -8,4 +8,3 @@ pipeline {
         }
     }
 }
-//teste build job pock_jenkins
