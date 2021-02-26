@@ -2,7 +2,8 @@ node('master'){
 
     stage('Stage 1') {
         checkout scm
-        sh './mvnw clean compile package test'
+       // sh './mvnw clean compile package test'
+        echo 'Hello world!' 
 
     }
 }   
