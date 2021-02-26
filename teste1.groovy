@@ -1,5 +1,5 @@
 node('master'){
-try{
+    try{
        stage('Limpeza do cache') {
             cleanWs(cleanWhenNotBuilt: false,
                     deleteDirs: true,
@@ -15,14 +15,15 @@ try{
             sh './mvnw clean compile package test'
  
         }
-    catch (exec)
-    {
+     
+ 
+    }catch (exec)  {
         currentBuild.result = 'FAILURE'
         throw new Exception(exec)
         
-    }finally{
-       
+    }finally{      
+ 
+      print 'Funcionou!!!! o/'
        
     } 
-}
 }
