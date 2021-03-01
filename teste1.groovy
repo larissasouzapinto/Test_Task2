@@ -14,10 +14,7 @@ node('master'){
             checkout scm
             sh 'pwd'
             sh 'chmod +x mvnw'
-            withSonarQubeEnv('sonar') {
             sh './mvnw clean compile package test'
-            }
- 
         }
      
  
