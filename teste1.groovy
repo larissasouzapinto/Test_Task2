@@ -32,7 +32,7 @@ node('master'){
 
         stage('Build') {
             withSonarQubeEnv('sonar') {
-            def mvnHome = tool 'maven-3.5.0'
+            def mvnHome = tool 'maven-3.6.3'
             sh "'${mvnHome}/bin/mvn' -f backend/pom.xml clean package sonar:sonar"
             }
         }
