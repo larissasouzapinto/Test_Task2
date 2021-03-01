@@ -26,7 +26,14 @@ node('master'){
         
     }finally{      
  
-      print 'Funcionou!!!! o/'
+      print 'Compilação Funcionou!!!! o/'
        
     } 
+
+    stage('Unit tests') {
+    steps {
+        sh 'mvn clean test'
+          }   
+    }
+
 }
