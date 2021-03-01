@@ -31,9 +31,7 @@ node('master'){
     } 
 
     stage('Unit tests') {
-    steps {
         sh 'mvn clean test'
-          }   
     }
 
 }
