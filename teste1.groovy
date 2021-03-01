@@ -12,7 +12,7 @@ node('master'){
  
         stage('Compilação do maven e Teste'){
             checkout scm
-            pwd
+            sh 'pwd'
             sh 'chmod + x mvnw'
             sh './mvnw clean compile package test'
             //chmod + x mvnw
