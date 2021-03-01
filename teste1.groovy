@@ -26,10 +26,13 @@ node('master'){
       print 'Compilação Funcionou!!!! o/'
        
     } 
-    stage('Teste Sonarqube'){
-      sh 'mvn sonar:sonar'
-      sh '-Dsonar.projectKey=projetotask2'  
-      sh '-Dsonar.host.url=http://localhost:9000'
-      sh '-Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46'
-    }
+    stage('SonarQube analysis') {
+
+			withSonarQubeEnv('sonarqube') {
+
+				sh 'mvn sonar:sonar -Dsonar.projectKey=projetotask2 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46'
+
+			}
+
+		}
 }
