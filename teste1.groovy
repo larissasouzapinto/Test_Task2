@@ -12,7 +12,6 @@ node('master'){
  
         stage('Compilação do maven e Teste'){
             checkout scm
-            sh 'pwd'
             sh 'chmod +x mvnw'
             sh './mvnw clean compile package test'
         }
@@ -27,21 +26,10 @@ node('master'){
       print 'Compilação Funcionou!!!! o/'
        
     } 
-
-   // stage('Code Quality Check via SonarQube') {
-    //steps {
-     //  script {
-       //def scannerHome = tool 'sonarqube';
-         //  withSonarQubeEnv("sonarqube-container") {
-           //sh "${tool("sonarqube")}/bin/sonar-scanner \
-           //-Dsonar.projectKey=test-node-js \
-           //-Dsonar.sources=. \
-           //-Dsonar.css.node=. \
-           //-Dsonar.host.url=http://localhost:9000 \
-           //-Dsonar.login=fa6ac30de3dfe0d62dd4c32967a45a1978a31313"
-           //    }
-            //}
-        //}
-  //  }
-
+    stage('Teste Sonarqube'){
+      mvn sonar:sonar \
+    -Dsonar.projectKey=projetotask2 \
+    -Dsonar.host.url=http://localhost:9000 \
+    -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46
+    }
 }
