@@ -31,15 +31,20 @@ node('master'){
        
     } 
 
-       stage("Quality Gate") { 
-           withSonarQubeEnv('sonar') {
-            timeout(time: 5, unit: 'MINUTES') { 
-                def qualityGate = waitForQualityGate() 
-                if (qualityGate.status != 'OK') {
-                    error "O código não está de acordo com as regras do Sonar: ${qualityGate.status}"
-                }
+    stage('Code Quality Check via SonarQube') {
+    steps {
+       script {
+       def scannerHome = tool 'sonarqube';
+           withSonarQubeEnv("sonarqube-container") {
+           sh "${tool("sonarqube")}/bin/sonar-scanner \
+           -Dsonar.projectKey=test-node-js \
+           -Dsonar.sources=. \
+           -Dsonar.css.node=. \
+           -Dsonar.host.url=http://localhost:9000 \
+           -Dsonar.login=fa6ac30de3dfe0d62dd4c32967a45a1978a31313"
+               }
             }
-           }
         }
+    }
 
 }
