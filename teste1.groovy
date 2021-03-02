@@ -34,7 +34,7 @@ node('master'){
         sh 'docker build -f ./Dockerfile.cp -t spring/petclinic .'
         sh 'docker images'
         sh 'docker login localhost:8083'
-        sh 'docker tag larissasouzapinto/petclinic localhost:8083/petclinic:1.0'
-        sh 'docker push localhost:8083/petclinic:1.0'
+        sh 'docker tag spring/petclinic localhost:8083/petclinic:1.1'
+        sh 'docker push localhost:8083/petclinic:1.1'
     }   
 }       
