@@ -21,13 +21,12 @@ node('master'){
         currentBuild.result = 'FAILURE'
         throw new Exception(exec)
         
-    }finally{           
+    }finally{        
     } 
 
     stage('SonarQube analysis') {
-			withSonarQubeEnv('sonarqube') {
+			withSonarQubeEnv("sonarqube") {
  				sh 'mvnw sonar:sonar -Dsonar.projectKey=projetotask2 -Dsonar.host.url=https://host.docker.internal:9000 -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46'
 			}
-
 		}
 }
