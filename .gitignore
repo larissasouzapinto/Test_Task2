@@ -10,3 +10,9 @@ target/*
 .sts4-cache/
 .vscode
 _site/
+/certificates
+/nginx
+/scripts
+certificates/*
+nginx/*
+scripts/*
