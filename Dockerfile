@@ -1,7 +1,7 @@
 #Dockerfile
-FROM openjdk:11.0.1-jre-slim-stretch
+FROM openjdk:8-jdk-alpine
 # Add Maintainer Info
- 
+
 # Add a volume pointing to /tmp
 VOLUME /tmp
  
