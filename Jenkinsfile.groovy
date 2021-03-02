@@ -31,7 +31,7 @@ node('master'){
 		}
 
     stage('Armazenar imagem no Nexus') {
-        sh 'docker build -f ./Dockerfile.cp -t spring/petclinic .'
+        sh 'docker build --no-cache -t localhost:8083/image-petclinic:1.0 .'
         sh 'docker images'
         sh 'docker login localhost:8083'
         sh 'docker tag spring/petclinic localhost:8083/petclinic:1.1'
