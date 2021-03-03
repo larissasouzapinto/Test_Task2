@@ -32,6 +32,8 @@ node('master'){
 
     stage('Armazenar imagem no Nexus') {
         sh 'docker images'
+        //sh 'apt remove golang-docker-credential-helpers'
+        sh 'docker login localhost:8083 -u admin -p admin'
         //sh 'docker login localhost:8083'
         sh 'docker push localhost:8083/petclinic:1.0'
     }   
