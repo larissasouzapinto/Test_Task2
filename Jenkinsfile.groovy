@@ -15,7 +15,7 @@ node('master'){
             sh './mvnw clean compile package test'
         }
 
-        stage('SonarQube analysis') {
+       /* stage('SonarQube analysis') {
 			withSonarQubeEnv("sonarqube") {
             def verifySonarqube = sh (script: "./mvnw sonar:sonar -Dsonar.projectKey=projetotask2  -Dsonar.host.url=https://host.docker.internal:9000   -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46",returnStdout: true).trim()
             print verifySonarqube
@@ -25,7 +25,7 @@ node('master'){
                 }
             }
         }
-
+*/
         stage('Armazenar imagem no Nexus') {
             sh 'docker images'
             //sh 'apt remove golang-docker-credential-helpers'
