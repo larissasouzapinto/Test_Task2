@@ -26,8 +26,13 @@ node('master'){
 
     stage('SonarQube analysis') {
 			withSonarQubeEnv("sonarqube") {
- 				sh './mvnw sonar:sonar -Dsonar.projectKey=projetotask2 -Dsonar.host.url=https://host.docker.internal:9000 -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46'
-			}
+                try{
+                    sh './mvnw sonar:sonar -Dsonar.projectKey=projetotask2 -Dsonar.host.url=https://host.docker.internal:9000 -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46'
+                }
+ 				catch (exec){
+                     sh './mvnw sonar:sonar -Dsonar.projectKey=projetotask2 -Dsonar.host.url=http://host.docker.internal:9000 -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46'
+                 }
+            }
 		}
 
     stage('Armazenar imagem no Nexus') {
