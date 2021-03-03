@@ -26,9 +26,9 @@ node('master'){
 
     stage('SonarQube analysis') {
 			withSonarQubeEnv("sonarqube") {
- 			def verifySonarqube = sh (script: "./mvnw sonar:sonar -Dsonar.projectKey=projetotask2  -Dsonar.host.url=https://host.docker.internal:9000   -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46",returnStdout: true).trim()
+ 			def verifySonarqube = returnStatus: true, sh (script: "./mvnw sonar:sonar -Dsonar.projectKey=projetotask2  -Dsonar.host.url=https://host.docker.internal:9000   -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46",returnStdout: true).trim()
             print verifySonarqube
-            if(verifySonarqube.contains('can not be reached') == true){
+            if(verifySonarqube != 0){
                 sh  "./mvnw sonar:sonar -Dsonar.projectKey=projetotask2  -Dsonar.host.url=http://host.docker.internal:9000   -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46"
  	    	}
     
