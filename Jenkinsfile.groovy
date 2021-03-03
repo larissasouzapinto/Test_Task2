@@ -19,19 +19,20 @@ node('master'){
  
     }catch (exec)  {
         currentBuild.result = 'FAILURE'
-        throw neAw Exception(exec)
+        throw new Exception(exec)
+        
     }finally{        
     } 
 
     stage('SonarQube analysis') {
 			withSonarQubeEnv("sonarqube") {
- 				sh './mvnw sonar:sonar -Dsonar.projectKey=projetotask2 -Dsonar.host.url=https://host.docker.internal:9000 -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46'
+ 				sh './mvnw sonar:sonar -Dsonar.projectKey=projetotask2 -Dsonar.host.url=http://host.docker.internal:9000 -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46'
 			}
 		}
 
     stage('Armazenar imagem no Nexus') {
         sh 'docker images'
-        sh 'apt remove golang-docker-credential-helpers'
+        //sh 'apt remove golang-docker-credential-helpers'
         sh 'docker login localhost:8083 -u admin -p admin'
         //sh 'docker login localhost:8083'
         sh 'docker push localhost:8083/petclinic:1.0'
