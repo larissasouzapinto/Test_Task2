@@ -29,8 +29,9 @@ node('master'){
  			def verifySonarqube = sh returnStatus: true, script: "./mvnw sonar:sonar -Dsonar.projectKey=projetotask2  -Dsonar.host.url=https://host.docker.internal:9000   -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46"
             print verifySonarqube
             if(verifySonarqube != 0){
-                sh  "./mvnw sonar:sonar -Dsonar.projectKey=projetotask2  -Dsonar.host.url=https://host.docker.internal:9000   -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46"
- 	    	echo 'executando logica https' 
+            echo '1 executando logica https'     
+                sh  "./mvnw sonar:sonar -Dsonar.projectKey=projetotask2  -Dsonar.host.url=https://localhost:9000   -Dsonar.login=0402c6931ae5d3562aa79282d31fe30d5910ff46"
+ 	    	echo '2 executando logica https' 
             }
     
 		}
